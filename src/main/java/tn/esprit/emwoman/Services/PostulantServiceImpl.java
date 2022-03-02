@@ -3,6 +3,7 @@ package tn.esprit.emwoman.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.emwoman.Entity.Cv;
 import tn.esprit.emwoman.Entity.Offers;
 import tn.esprit.emwoman.Entity.Postulant;
 import tn.esprit.emwoman.Repositories.CvRepository;
@@ -23,7 +24,8 @@ public class PostulantServiceImpl implements PostulantService{
     @Autowired
     private OffersRepository offersRepository;
 
-
+    @Autowired
+    CvService cvService;
     @Override
     public Postulant ajouterPostulant(Postulant postulant) {
         return postulantRepository.save(postulant);
@@ -35,6 +37,7 @@ public class PostulantServiceImpl implements PostulantService{
         if(postulant.getCv()!=null) p.setCv(postulant.getCv());
         if(postulant.getDate()!=null)p.setDate(postulant.getDate());
         if(postulant.getOffers()!=null) p.setOffers(postulant.getOffers());
+        if(postulant.getName()!=null) p.setName(postulant.getName());
         return postulantRepository.save(p);
     }
 
@@ -67,5 +70,21 @@ public class PostulantServiceImpl implements PostulantService{
     @Override
     public List<Postulant> deletePostulantByoffer(Offers offers) {
         return postulantRepository.deletePostulantsByOffers(offers);
+    }
+
+    @Override
+    public Postulant affecterOffreToPostulant(int idOffre, int idPostulant) {
+        Offers offers=offersRepository.findById(idOffre).get();
+        Postulant part=postulantRepository.findById(idPostulant).get();
+        part.setOffers(offers);
+        return postulantRepository.save(part);
+    }
+
+    @Override
+    public Postulant affecterCvToPostulant(int postulantId, int cvId) {
+        Postulant postulant=postulantRepository.findById(postulantId).get();
+        Cv cv=cvService.getCvById(cvId);
+        postulant.setCv(cv);
+        return postulantRepository.save(postulant);
     }
 }

@@ -16,6 +16,9 @@ public interface PostulantService {
     void deleteAllPostulant();
     List<Postulant> deletePostulantByoffer(Offers offers);
 
+    Postulant affecterOffreToPostulant(int idOffre,int idPostulant);
+
+    Postulant affecterCvToPostulant(int postulantId,int cvId);
 
 
 

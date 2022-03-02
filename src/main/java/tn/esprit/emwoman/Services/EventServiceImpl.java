@@ -84,12 +84,11 @@ public class EventServiceImpl implements EventsService{
     }
 
     @Override
-    public Events affecterParticipantAEvent(int idEvent, int idParticipant) {
+    public Events affecterParticipantAEvent(int idEvent, List<Integer> idParticipant) {
         Events ev=eventsRepository.findById(idEvent).get();
-        Participant part=participantRepository.findById(idParticipant).get();
-        List<Participant> lPart=new ArrayList<>();
-        lPart.add(part);
-        ev.setParticipant(lPart);
+        List<Participant> part=participantRepository.findAllById(idParticipant);
+        ev.setParticipant(part);
+
         return eventsRepository.save(ev);
     }
 

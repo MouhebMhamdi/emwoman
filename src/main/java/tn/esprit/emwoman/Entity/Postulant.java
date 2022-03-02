@@ -20,6 +20,8 @@ public class Postulant {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Integer id;
+    private String name;
+    private int age;
 
     @Temporal(TemporalType.DATE)
     private Date date;

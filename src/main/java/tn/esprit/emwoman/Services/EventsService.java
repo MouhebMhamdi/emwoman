@@ -1,6 +1,7 @@
 package tn.esprit.emwoman.Services;
 
 import tn.esprit.emwoman.Entity.Events;
+import tn.esprit.emwoman.Entity.Participant;
 
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,7 @@ public interface EventsService {
 
     Events affecterUserAEvent(int idEvent,int idUser);
 
-    Events affecterParticipantAEvent(int idEvent,int idParticipant);
+    Events affecterParticipantAEvent(int idEvent, List<Integer> idParticipant);
 
     Double sommeDonation();
 

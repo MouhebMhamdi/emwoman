@@ -33,7 +33,7 @@ public class Events {
     private User user;
 
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "events",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Participant> participant;
 

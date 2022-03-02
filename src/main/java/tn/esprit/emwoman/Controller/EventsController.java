@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.emwoman.Entity.Events;
+import tn.esprit.emwoman.Entity.Participant;
 import tn.esprit.emwoman.Services.EventsService;
 
 import javax.websocket.server.PathParam;
@@ -32,7 +33,7 @@ public class EventsController {
     }
 
     @GetMapping("affectParticipant/{idEvent}/{idPart}")
-    public Events affecterParticipantAEvent(@PathVariable int idEvent,@PathVariable int idPart){
+    public Events affecterParticipantAEvent(@PathVariable int idEvent, @PathVariable List<Integer> idPart){
         return eventsService.affecterParticipantAEvent(idEvent,idPart);
     }
 

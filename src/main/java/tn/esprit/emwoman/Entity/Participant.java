@@ -22,7 +22,7 @@ public class Participant {
     private Integer id;
     private String FullName;
     private Double donation;
-    @ManyToMany(mappedBy = "participant",cascade = CascadeType.ALL)
+    @ManyToMany
     @JsonIgnore
     private List<Events> events;
 }
